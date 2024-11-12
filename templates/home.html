@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Student Login</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+        *{
+            margin: 0;
+            padding : 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            user-select: none;
+            background-color: #c9d6ff;
+            background: linear-gradient(to right, #e2e2e2, #c9d6ff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+            border-radius: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+            position: relative;
+            width: 768px;
+            max-width: 100%;
+            min-height: 480px;
+        }
+
+        .container p, .container span {
+            font-size: 14px;
+            line-height: 20px;
+            letter-spacing: 0.3px;
+        }
+
+        .container a {
+            color: #333;
+            font-size: 13px;
+            text-decoration: none;
+            margin: 15px 0 10px;
+        }
+
+        .container button {
+            background-color: #512da8;
+            color: #fff;
+            font-size: 12px;
+            padding: 10px 45px;
+            border: 1px solid transparent;
+            border-radius: 8px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        .login-section-container, .welcome-section {
+            padding: 40px;
+            width: 50%;
+            height: 100%;
+        }
+
+        /* Login Form Section */
+        .login-section-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .login-section {
+            text-align: center;
+        }
+
+        .login-section h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .login-section p {
+            margin-bottom: 20px;
+        }
+
+        .login-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .login-option-btn {
+            background-color: #512da8;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .login-option-btn:hover {
+            background-color: #7f56da;
+        }
+
+        .bottom-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        /* Welcome Section */
+        .welcome-section {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(to right, #5c6bc0, #512da8);
+            
+            color: white;
+            
+            border-radius: 150px 20px 20px 100px;
+            padding: 40px;
+            
+        }
+
+        .welcome-section h2 {
+            font-size: 2.5em;
+            margin-bottom: 5px;
+        }
+
+        .welcome-section h3{
+            font-size: 2em;
+            margin-bottom:20px
+        }
+
+        .welcome-section span {
+            font-weight: bold;
+        }
+
+        .welcome-section p {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                height: auto;
+            }
+            .login-section-container, .welcome-section {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Left Section - Login Form -->
+        <div class="login-section-container">
+            <div class="login-section">
+                <h1>Login to GEU</h1>
+                <p>Enter your account details</p>
+                <form class="login-form">
+                    <div class="login-options">
+                        <button type="button" class="login-option-btn" onclick="window.location.href='{% url 'admin.login' %}'">Admin Login</button>
+                        
+                        <div class="bottom-row">
+                            <button type="button" class="login-option-btn" onclick="window.location.href='{% url 'student.login' %}'">Student Login</button>
+                            <button type="button" class="login-option-btn" onclick="window.location.href='{% url 'teacher.login' %}'">Teacher Login</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Right Section - Welcome Message -->
+        <div class="welcome-section">
+            <h2>Welcome to</h2>
+            <h3>Login Portal</h3>
+            <p>Login to access your account</p>
+        </div>
+    </div>
+
+</body>
+</html>

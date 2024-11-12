@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudentHub</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background-color: #111827;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        header {
+            background-color: #581c87;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            padding: 0.75rem 0;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-section h1 {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .user-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .avatar {
+            width: 2rem;
+            height: 2rem;
+            background-color: #e9d5ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #581c87;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        main {
+            padding: 2rem 1rem;
+        }
+
+        .welcome-card {
+            background: linear-gradient(to right, #6b21a8, #581c87);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+        }
+
+        .welcome-card h2 {
+            color: white;
+            font-size: 1.875rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .welcome-card p {
+            color: #e9d5ff;
+        }
+
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .action-card {
+            background-color: #6b21a8;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .action-card:hover {
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+        }
+
+        .action-card h3 {
+            color: white;
+            font-size: 1.25rem;
+            margin: 1rem 0 0.5rem;
+        }
+
+        .action-card p {
+            color: #e9d5ff;
+        }
+
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .overview-card {
+            background-color: #1f2937;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .card-header h3 {
+            color: white;
+            font-size: 1.25rem;
+        }
+
+        .class-item, .assignment-item {
+            background-color: #374151;
+            padding: 0.75rem;
+            border-radius: 0.375rem;
+            margin-bottom: 0.75rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .class-info {
+            color: white;
+        }
+
+        .room-info {
+            color: #9ca3af;
+            font-size: 0.875rem;
+        }
+
+        .time-info {
+            color: #a855f7;
+        }
+
+        .music-player {
+            position: relative;
+            height: 12rem;
+            border-radius: 0.5rem;
+            overflow: hidden;
+        }
+
+        .music-player img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .player-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            padding: 1rem;
+            color: white;
+        }
+
+        .player-overlay p {
+            color: #e5e7eb;
+            font-size: 0.875rem;
+        }
+
+        .lucide {
+            width: 1.25rem;
+            height: 1.25rem;
+            color: #a855f7;
+        }
+
+        .lucide.large {
+            width: 2rem;
+            height: 2rem;
+            color: #e9d5ff;
+        }
+
+        @media (max-width: 768px) {
+            .quick-actions {
+                grid-template-columns: 1fr;
+            }
+            
+            .overview-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo-section">
+                <i data-lucide="graduation-cap" class="large"></i>
+                <h1>StudentHub</h1>
+            </div>
+            <div class="user-section">
+                <i data-lucide="bell" class="lucide" style="color: #e9d5ff;"></i>
+                <div class="avatar">JS</div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="welcome-card">
+            <h2>Welcome back, User!</h2>
+            <p>Your next class starts in 45 minutes</p>
+        </div>
+
+        <div class="quick-actions">
+            <div class="action-card">
+                <i data-lucide="clock"></i>
+                <h3>Schedule</h3>
+                <p>View your daily classes</p>
+            </div>
+            <div class="action-card">
+                <i data-lucide="calendar"></i>
+                <h3>Calendar</h3>
+                <p>Upcoming deadlines</p>
+            </div>
+            <div class="action-card">
+                <i data-lucide="library"></i>
+                <h3>Library</h3>
+                <p>Access resources</p>
+            </div>
+            <div class="action-card">
+                <i data-lucide="users"></i>
+                <h3>Study Groups</h3>
+                <p>Join or create groups</p>
+            </div>
+            <div class="action-card">
+                <i data-lucide="mail"></i>
+                <h3>Messages</h3>
+                <p>Check your inbox</p>
+            </div>
+            <div class="action-card">
+                <i data-lucide="file-text"></i>
+                <h3>Assignments</h3>
+                <p>View pending work</p>
+            </div>
+        </div>
+
+        <div class="overview-grid">
+            <div class="overview-card">
+                <div class="card-header">
+                    <h3>Today's Classes</h3>
+                    <i data-lucide="book-open"></i>
+                </div>
+                <div class="class-item">
+                    <div>
+                        <div class="class-info">Advanced Mathematics</div>
+                        <div class="room-info">Room 301</div>
+                    </div>
+                    <div class="time-info">10:00 AM</div>
+                </div>
+                <div class="class-item">
+                    <div>
+                        <div class="class-info">Computer Science</div>
+                        <div class="room-info">Lab 204</div>
+                    </div>
+                    <div class="time-info">1:30 PM</div>
+                </div>
+                <div class="class-item">
+                    <div>
+                        <div class="class-info">Physics</div>
+                        <div class="room-info">Room 105</div>
+                    </div>
+                    <div class="time-info">3:45 PM</div>
+                </div>
+            </div>
+
+            <div class="overview-card">
+                <div class="card-header">
+                    <h3>Due Soon</h3>
+                    <i data-lucide="file-text"></i>
+                </div>
+                <div class="assignment-item">
+                    <div class="class-info">Physics Report</div>
+                    <div class="time-info">Tomorrow</div>
+                </div>
+                <div class="assignment-item">
+                    <div class="class-info">Math Assignment</div>
+                    <div class="time-info">In 2 days</div>
+                </div>
+                <div class="assignment-item">
+                    <div class="class-info">Programming Project</div>
+                    <div class="time-info">Next Week</div>
+                </div>
+            </div>
+
+            <div class="overview-card">
+                <div class="card-header">
+                    <h3>Study Break</h3>
+                    <i data-lucide="coffee"></i>
+                </div>
+                <div class="music-player">
+                    <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&q=80&w=500" alt="Study music">
+                    <div class="player-overlay">
+                        <h4>Study Music Playlist</h4>
+                        <p>2 hours of focus music</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Add hover effect to action cards
+        document.querySelectorAll('.action-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-2px)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Add notification functionality
+        const bellIcon = document.querySelector('[data-lucide="bell"]');
+        bellIcon.addEventListener('click', () => {
+            alert('No new notifications');
+        });
+
+        // Update time dynamically
+        function updateNextClassTime() {
+            const now = new Date();
+            const classes = [
+                { time: '10:00', hour: 10, min: 0 },
+                { time: '13:30', hour: 13, min: 30 },
+                { time: '15:45', hour: 15, min: 45 }
+            ];
+
+            let nextClass = null;
+            for (const cls of classes) {
+                const classTime = new Date();
+                classTime.setHours(cls.hour, cls.min, 0);
+                if (classTime > now) {
+                    nextClass = classTime;
+                    break;
+                }
+            }
+
+            if (nextClass) {
+                const diff = Math.floor((nextClass - now) / 1000 / 60);
+                document.querySelector('.welcome-card p').textContent = 
+                    `Your next class starts in ${diff} minutes`;
+            } else {
+                document.querySelector('.welcome-card p').textContent = 
+                    'No more classes today';
+            }
+        }
+
+        updateNextClassTime();
+        setInterval(updateNextClassTime, 60000);
+    </script>
+</body>
+</html>
